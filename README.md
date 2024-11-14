@@ -1,0 +1,1 @@
+# Japan zip code to latitude longitude
