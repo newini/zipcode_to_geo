@@ -63,7 +63,11 @@ names = [
     "更新の表示",
     "変更理由",
 ]
-zipcode_df = pd.read_csv(filename, encoding='shift-jis', names=names)
+dtype_dict = {
+    "全国地方公共団体コード": str,
+    "郵便番号": str,
+}
+zipcode_df = pd.read_csv(filename, encoding='shift-jis', names=names, dtype=dtype_dict)
 print(zipcode_df.shape)
 zipcode_df.head()
 
@@ -80,10 +84,12 @@ zipcode_df = zipcode_df[use_cols]
 
 # In[25]:
 
-
+dtype_dict = {
+    "市区町村コード": str,
+}
 filename = 'data/latitude_longitude.csv'
 # latlong_df = pd.read_csv(filename, encoding='ANSI')
-latlong_df = pd.read_csv(filename, encoding='cp932')
+latlong_df = pd.read_csv(filename, encoding='cp932', dtype=dtype_dict)
 print(latlong_df.shape)
 latlong_df.head()
 
@@ -299,6 +305,5 @@ df.isna().sum()
 # In[196]:
 
 
-filename = 'data/zipcode_latitude_longitude2.csv'
+filename = 'data/zipcode_latitude_longitude.csv'
 df.to_csv(filename, index=False)
-
